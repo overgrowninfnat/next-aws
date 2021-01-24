@@ -4,8 +4,6 @@ import { useAuth } from '../authContext/auth'
 
 export default function Header () {
   const { user, isUserLoggedIn } = useAuth()
-  console.log(user)
-  console.log(isUserLoggedIn)
   async function signOut () {
     try {
       await Auth.signOut({ global: true })
@@ -34,12 +32,21 @@ export default function Header () {
           >
             <span className='block'>Posts</span>
           </a>
-          {isUserLoggedIn && <a
+          {isUserLoggedIn && <><a
             href='#_'
             className='relative font-medium leading-6 text-gray-600 transition duration-150 ease-out hover:text-gray-900'
           >
             <span className='block'>Create Post</span>
-          </a>}
+          </a>
+            <Link href={'/profile'}>
+            <a
+            className='relative font-medium leading-6 text-gray-600 transition duration-150 ease-out hover:text-gray-900'
+            >
+            <span className='block'>Profile</span>
+            </a>
+            </Link>
+          </>
+          }
         </nav>
         {isUserLoggedIn ? <div className='relative z-10 inline-flex items-center space-x-3 md:ml-5 lg:justify-end'>
           <button
